@@ -36,8 +36,8 @@
          group as the part of a menu contained between two lines. The parent of a group
          must be a menu. -->
     <Groups>
-      <Group guid="guidAlignCommentsExtensionPackageCmdSet" id="MyMenuGroup" priority="0x0600">
-        <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS"/>
+      <Group guid="guidAlignCommentsExtensionPackageCmdSet" id="EditorContextMenuGroup" priority="0x0100">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN"/>
       </Group>
     </Groups>
 
@@ -53,9 +53,9 @@
               <CommandFlag>DynamicVisibility</CommandFlag>
           If you do not want an image next to your command, remove the Icon node /> -->
       <Button guid="guidAlignCommentsExtensionPackageCmdSet" id="AlignCommandId" priority="0x0100" type="Button">
-        <Parent guid="guidAlignCommentsExtensionPackageCmdSet" id="MyMenuGroup" />
+        <Parent guid="guidAlignCommentsExtensionPackageCmdSet" id="EditorContextMenuGroup" />
         <Strings>
-          <ButtonText>Invoke AlignCommand</ButtonText>
+          <ButtonText>Align comments</ButtonText>
         </Strings>
       </Button>
     </Buttons>
@@ -68,7 +68,7 @@
 
     <!-- This is the guid used to group the menu commands together -->
     <GuidSymbol name="guidAlignCommentsExtensionPackageCmdSet" value="{a42f7e31-20cf-4356-9812-2793c1534e36}">
-      <IDSymbol name="MyMenuGroup" value="0x1020" />
+      <IDSymbol name="EditorContextMenuGroup" value="0x1020" />
       <IDSymbol name="AlignCommandId" value="0x0100" />
     </GuidSymbol>
 
