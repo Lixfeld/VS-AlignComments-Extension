@@ -16,6 +16,8 @@ namespace AlignCommentsExtension.Classes
     {
         public static IWpfTextView GetActiveTextView()
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             IComponentModel componentModel = Package.GetGlobalService(typeof(SComponentModel)) as IComponentModel;
             if (componentModel == null)
                 return null;
@@ -35,6 +37,19 @@ namespace AlignCommentsExtension.Classes
                 edit.Replace(replaceSpan, newText);
                 edit.Apply();
             }
+        }
+
+        public static (int startLineNo, int endLineNo) GetSelectedLineNumbers(IWpfTextView textView)
+        {
+            // Get positions of the first and last line in the selection
+            int startSelectionPosition = textView.Selection.Start.Position.Position;
+            int endSelectionPosition = textView.Selection.End.Position.Position;
+
+            ITextSnapshot textSnapshot = textView.TextSnapshot;
+            int startLineNumber = textSnapshot.GetLineNumberFromPosition(startSelectionPosition);
+            int endLineNumber = textSnapshot.GetLineNumberFromPosition(endSelectionPosition);
+
+            return (startLineNumber, endLineNumber);
         }
 
         private static IVsTextView GetActiveView()
