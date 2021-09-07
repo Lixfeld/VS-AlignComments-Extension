@@ -46,6 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AlignCommand.cs" />
+    <Compile Include="Classes\SelectedLines.cs" />
     <Compile Include="Classes\TextViewHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AlignCommentsExtensionPackage.cs" />
