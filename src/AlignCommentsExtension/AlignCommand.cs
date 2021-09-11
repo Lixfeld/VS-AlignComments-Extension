@@ -107,7 +107,7 @@ namespace AlignCommentsExtension
             if (selectedLines.Lines.Count() >= 2)
             {
                 int tabSize = dte.ActiveDocument.TabSize;
-                CommentAligner commentAligner = new CommentAligner(selectedLines.Lines, tabSize);
+                CommentAligner commentAligner = new CommentAligner(selectedLines.Lines, tabSize, selectedLines.LineEnding);
                 string newText = commentAligner.GetText();
 
                 TextViewHelper.ReplaceText(textView, selectedLines.StartPosition, selectedLines.Length, newText);

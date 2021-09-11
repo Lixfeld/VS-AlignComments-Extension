@@ -10,6 +10,7 @@ namespace AlignCommentsExtension.Classes
         public int StartPosition { get; }
         public int Length { get; }
         public IEnumerable<string> Lines { get; }
+        public string LineEnding { get; }
 
         public SelectedLines(ITextSnapshot textSnapshot, int startLineNo, int endLineNo)
         {
@@ -18,7 +19,12 @@ namespace AlignCommentsExtension.Classes
             List<string> selectedLines = new List<string>();
             for (int i = startLineNo; i <= endLineNo; i++)
             {
-                selectedLines.Add(textSnapshot.GetLineFromLineNumber(i).GetTextIncludingLineBreak());
+                ITextSnapshotLine line = textSnapshot.GetLineFromLineNumber(i);
+                selectedLines.Add(line.GetTextIncludingLineBreak());
+
+                // Get line ending/break from first selected line
+                if (i == startLineNo)
+                    LineEnding = line.GetLineBreakText();
             }
 
             // Length including line breaks
