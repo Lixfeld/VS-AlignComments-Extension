@@ -1,8 +1,9 @@
 ﻿using System;
 using System.ComponentModel.Design;
-using System.Globalization;
+using System.Linq;
+using AlignCommentsExtension.Classes;
 using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.Text.Editor;
 using Task = System.Threading.Tasks.Task;
 
 namespace AlignCommentsExtension
@@ -87,17 +88,18 @@ namespace AlignCommentsExtension
         private void Execute(object sender, EventArgs e)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            string message = string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.GetType().FullName);
-            string title = "AlignCommand";
 
-            // Show a message box to prove we were here
-            VsShellUtilities.ShowMessageBox(
-                this.package,
-                message,
-                title,
-                OLEMSGICON.OLEMSGICON_INFO,
-                OLEMSGBUTTON.OLEMSGBUTTON_OK,
-                OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
+            IWpfTextView textView = TextViewHelper.GetActiveTextView();
+            var selection = TextViewHelper.GetSelectedLineNumbers(textView);
+            SelectedLines selectedLines = new SelectedLines(textView.TextSnapshot, selection.startLineNo, selection.endLineNo);
+
+            if (selectedLines.Lines.Count() >= 2)
+            {
+                CommentAligner commentAligner = new CommentAligner(selectedLines.Lines);
+                string newText = commentAligner.GetText();
+
+                TextViewHelper.ReplaceText(textView, selectedLines.StartPosition, selectedLines.Length, newText);
+            }
         }
     }
 }
