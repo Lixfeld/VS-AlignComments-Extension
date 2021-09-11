@@ -2,6 +2,8 @@
 using System.ComponentModel.Design;
 using System.Linq;
 using AlignCommentsExtension.Classes;
+using EnvDTE;
+using EnvDTE80;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Text.Editor;
 using Task = System.Threading.Tasks.Task;
@@ -27,6 +29,11 @@ namespace AlignCommentsExtension
         /// VS Package that provides this command, not null.
         /// </summary>
         private readonly AsyncPackage package;
+
+        /// <summary>
+        /// The top-level object in the Visual Studio automation object model
+        /// </summary>
+        private static DTE2 dte;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AlignCommand"/> class.
@@ -76,6 +83,10 @@ namespace AlignCommentsExtension
 
             OleMenuCommandService commandService = await package.GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
             Instance = new AlignCommand(package, commandService);
+
+            // Get DTE object
+            if (await package.GetServiceAsync(typeof(DTE)) is DTE2 dte2)
+                dte = dte2;
         }
 
         /// <summary>
@@ -95,7 +106,8 @@ namespace AlignCommentsExtension
 
             if (selectedLines.Lines.Count() >= 2)
             {
-                CommentAligner commentAligner = new CommentAligner(selectedLines.Lines);
+                int tabSize = dte.ActiveDocument.TabSize;
+                CommentAligner commentAligner = new CommentAligner(selectedLines.Lines, tabSize);
                 string newText = commentAligner.GetText();
 
                 TextViewHelper.ReplaceText(textView, selectedLines.StartPosition, selectedLines.Length, newText);
