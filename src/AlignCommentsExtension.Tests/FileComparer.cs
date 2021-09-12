@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using AlignCommentsExtension.Classes;
 using Xunit;
 using static AlignCommentsExtension.Classes.Constants;
@@ -12,7 +13,7 @@ namespace AlignCommentsExtension.Tests
     {
         private const string TestFilesDirectory = @"TestFiles\";
 
-        public static void Verify(string fileName, int tabSize = DefaultTabSize, string lineEnding = WindowsLineEnding)
+        public static void Verify(int tabSize = DefaultTabSize, string lineEnding = WindowsLineEnding, [CallerMemberName] string fileName = "")
         {
             // Arrange
             string testFileName = TestFilesDirectory + fileName + ".test";
@@ -26,7 +27,7 @@ namespace AlignCommentsExtension.Tests
             string actualText = commentAligner.GetText();
 
             // Assert
-            Assert.Equal(actualText, expectedText);
+            Assert.Equal(expectedText, actualText);
         }
     }
 }

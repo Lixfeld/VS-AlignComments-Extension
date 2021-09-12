@@ -8,8 +8,9 @@ namespace AlignCommentsExtension.Tests
     public class CommentAlignerTests
     {
         [Fact]
-        public void Test1()
+        public void SimpleAlignment()
         {
+            FileComparer.Verify();
         }
     }
 }
