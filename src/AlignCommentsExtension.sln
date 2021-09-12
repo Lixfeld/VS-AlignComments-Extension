@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlignCommentsExtension", "AlignCommentsExtension\AlignCommentsExtension.csproj", "{49DC4238-61CB-4138-9A1B-536C964402C2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlignCommentsExtension.Tests", "AlignCommentsExtension.Tests\AlignCommentsExtension.Tests.csproj", "{278F771B-EC4B-473D-9C1D-395BC2CE38CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{49DC4238-61CB-4138-9A1B-536C964402C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49DC4238-61CB-4138-9A1B-536C964402C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49DC4238-61CB-4138-9A1B-536C964402C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{278F771B-EC4B-473D-9C1D-395BC2CE38CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{278F771B-EC4B-473D-9C1D-395BC2CE38CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{278F771B-EC4B-473D-9C1D-395BC2CE38CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{278F771B-EC4B-473D-9C1D-395BC2CE38CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
