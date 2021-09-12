@@ -33,11 +33,15 @@ namespace AlignCommentsExtension.Classes
             int commentIndex = linesWithoutTabs.Select(x => x.LastIndexOf(DoubleSlash)).Max();
 
             List<string> newLines = new List<string>();
-            foreach (string line in lines)
+            for (int i = 0; i < lines.Count(); i++)
             {
+                string line = lines[i];
+
                 //ToDo(Lixfeld): Improve comment detection
                 int index = line.LastIndexOf(DoubleSlash);
-                if (index <= -1)
+                int indexWithoutTabs = linesWithoutTabs[i].LastIndexOf(DoubleSlash);
+
+                if (index <= -1 || commentIndex == indexWithoutTabs)
                 {
                     // Add unchanged line
                     newLines.Add(line);
