@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="AlignCommand.cs" />
     <Compile Include="Classes\CommentAligner.cs" />
+    <Compile Include="Classes\Constants.cs" />
     <Compile Include="Classes\SelectedLines.cs" />
     <Compile Include="Classes\TextViewHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,38 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using static AlignCommentsExtension.Classes.Constants;
 
 namespace AlignCommentsExtension.Classes
 {
     public class CommentAligner
     {
-        private const int DefaultTabSize = 4;
-        private const string DoubleSlash = "//";
-        private const string WindowsLineEnding = "\r\n";
-
-        public IEnumerable<string> Lines { get; }
         public int TabSize { get; }
         public string LineEnding { get; }
+        private List<string> lines { get; }
+        private List<string> linesWithoutTabs { get; }
 
         public CommentAligner(IEnumerable<string> lines, int tabSize = DefaultTabSize, string lineEnding = WindowsLineEnding)
         {
-            Lines = lines;
             TabSize = tabSize;
             LineEnding = lineEnding;
+
+            this.lines = lines.ToList();
+            this.linesWithoutTabs = lines.Select(x => x.Replace("\t", new string(' ', TabSize))).ToList();
         }
 
-        private int GetCommentIndexWithoutTabs()
+        public string GetText()
         {
-            var linesWithoutTabs = Lines.Select(x => x.Replace("\t", new string(' ', TabSize)));
-            return linesWithoutTabs.Select(x => x.LastIndexOf(DoubleSlash)).Max();
+            string text = string.Join(LineEnding, GetLines()) + LineEnding;
+            return text;
         }
 
         private IEnumerable<string> GetLines()
         {
-            int commentIndex = GetCommentIndexWithoutTabs();
+            // Get inline comment index without tabs
+            int commentIndex = linesWithoutTabs.Select(x => x.LastIndexOf(DoubleSlash)).Max();
 
             List<string> newLines = new List<string>();
-            foreach (string line in Lines)
+            foreach (string line in lines)
             {
                 //ToDo(Lixfeld): Improve comment detection
                 int index = line.LastIndexOf(DoubleSlash);
@@ -55,12 +56,6 @@ namespace AlignCommentsExtension.Classes
                 }
             }
             return newLines;
-        }
-
-        public string GetText()
-        {
-            string text = string.Join(LineEnding, GetLines()) + LineEnding;
-            return text;
         }
     }
 }
