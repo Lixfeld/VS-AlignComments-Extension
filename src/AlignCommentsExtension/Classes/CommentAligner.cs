@@ -12,7 +12,7 @@ namespace AlignCommentsExtension.Classes
         private List<string> lines { get; }
         private List<string> linesWithoutTabs { get; }
 
-        public CommentAligner(IEnumerable<string> lines, int tabSize = DefaultTabSize, string lineEnding = WindowsLineEnding)
+        public CommentAligner(IEnumerable<string> lines, int tabSize, string lineEnding)
         {
             TabSize = tabSize;
             LineEnding = lineEnding;

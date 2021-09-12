@@ -1,9 +1,11 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace AlignCommentsExtension.Tests
 {
-    public class UnitTest1
+    public class CommentAlignerTests
     {
         [Fact]
         public void Test1()
