@@ -1,0 +1,11 @@
+﻿namespace AlignCommentsExtension.Tests
+{
+	public enum Month
+	{
+		August = 8 // 8
+		September, // 9
+		October, // 10
+		November, // 11
+		December // 12
+	}
+}
