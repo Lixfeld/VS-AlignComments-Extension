@@ -6,6 +6,8 @@
         <Description xml:space="preserve">Align single-line comments for C, C++, C# and JavaScript</Description>
         <MoreInfo>https://github.com/Lixfeld/VS-AlignComments-Extension</MoreInfo>
         <License>LICENSE.txt</License>
+        <Icon>Icon.png</Icon>
+        <PreviewImage>Preview.png</PreviewImage>
         <Tags>align, alignment, comment, formatting</Tags>
     </Metadata>
     <Installation>
