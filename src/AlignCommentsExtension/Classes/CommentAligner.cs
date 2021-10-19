@@ -41,7 +41,7 @@ namespace AlignCommentsExtension.Classes
                 int index = line.LastIndexOf(DoubleSlash);
                 int indexWithoutTabs = linesWithoutTabs[i].LastIndexOf(DoubleSlash);
 
-                if (index <= -1 || commentIndex == indexWithoutTabs)
+                if (index <= -1)
                 {
                     // Add unchanged line
                     newLines.Add(line);
