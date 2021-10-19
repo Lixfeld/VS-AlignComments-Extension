@@ -11,7 +11,7 @@ namespace AlignCommentsExtension
         public const string Name = "Align Comments";
         public const string Description = @"Align single-line comments for C, C++, C# and JavaScript";
         public const string Language = "en-US";
-        public const string Version = "1.0";
+        public const string Version = "1.0.1";
         public const string Author = "Lixfeld";
         public const string Tags = "align, alignment, comment, formatting";
     }

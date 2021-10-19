@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="AlignCommentsExtension.277a8d42-8e31-48f0-9a2d-dca731e08c8f" Version="1.0" Language="en-US" Publisher="Lixfeld" />
+        <Identity Id="AlignCommentsExtension.277a8d42-8e31-48f0-9a2d-dca731e08c8f" Version="1.0.1" Language="en-US" Publisher="Lixfeld" />
         <DisplayName>Align Comments</DisplayName>
         <Description xml:space="preserve">Align single-line comments for C, C++, C# and JavaScript</Description>
         <MoreInfo>https://github.com/Lixfeld/VS-AlignComments-Extension</MoreInfo>

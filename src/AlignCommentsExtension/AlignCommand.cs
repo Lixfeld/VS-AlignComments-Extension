@@ -110,7 +110,19 @@ namespace AlignCommentsExtension
                 CommentAligner commentAligner = new CommentAligner(selectedLines.Lines, tabSize, selectedLines.LineEnding);
                 string newText = commentAligner.GetText();
 
-                TextViewHelper.ReplaceText(textView, selectedLines.StartPosition, selectedLines.Length, newText);
+                try
+                {
+                    dte.UndoContext.Open("Align comments");
+                    TextViewHelper.ReplaceText(textView, selectedLines.StartPosition, selectedLines.Length, newText);
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.Write(ex);
+                }
+                finally
+                {
+                    dte.UndoContext.Close();
+                }
             }
         }
     }
