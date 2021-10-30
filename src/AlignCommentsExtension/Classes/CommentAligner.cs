@@ -9,8 +9,9 @@ namespace AlignCommentsExtension.Classes
     {
         public int TabSize { get; }
         public string LineEnding { get; }
-        private List<string> lines { get; }
-        private List<string> linesWithoutTabs { get; }
+
+        private readonly List<string> lines;
+        private readonly List<string> linesWithoutTabs;
 
         public CommentAligner(IEnumerable<string> lines, int tabSize, string lineEnding)
         {

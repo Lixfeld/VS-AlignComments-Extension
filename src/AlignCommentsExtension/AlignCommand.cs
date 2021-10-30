@@ -101,8 +101,8 @@ namespace AlignCommentsExtension
             ThreadHelper.ThrowIfNotOnUIThread();
 
             IWpfTextView textView = TextViewHelper.GetActiveTextView();
-            var selection = TextViewHelper.GetSelectedLineNumbers(textView);
-            SelectedLines selectedLines = new SelectedLines(textView.TextSnapshot, selection.startLineNo, selection.endLineNo);
+            (int startLineNo, int endLineNo) = TextViewHelper.GetSelectedLineNumbers(textView);
+            SelectedLines selectedLines = new SelectedLines(textView.TextSnapshot, startLineNo, endLineNo);
 
             if (selectedLines.Lines.Count() >= 2)
             {
