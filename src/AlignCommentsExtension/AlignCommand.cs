@@ -6,6 +6,7 @@ using EnvDTE;
 using EnvDTE80;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Text.Editor;
+using static AlignCommentsExtension.Classes.Constants;
 using Task = System.Threading.Tasks.Task;
 
 namespace AlignCommentsExtension
@@ -107,7 +108,9 @@ namespace AlignCommentsExtension
             if (selectedLines.Lines.Count() >= 2)
             {
                 int tabSize = dte.ActiveDocument.TabSize;
-                CommentAligner commentAligner = new CommentAligner(selectedLines.Lines, tabSize, selectedLines.LineEnding);
+                string delimiter = GetCommentDelimiter();
+
+                CommentAligner commentAligner = new CommentAligner(selectedLines.Lines, tabSize, selectedLines.LineEnding, delimiter);
                 string newText = commentAligner.GetText();
 
                 try
@@ -124,6 +127,18 @@ namespace AlignCommentsExtension
                     dte.UndoContext.Close();
                 }
             }
+        }
+
+        private string GetCommentDelimiter()
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            string name = dte.ActiveDocument.Name;
+            if (name.EndsWith(VisualBasicExtension, StringComparison.InvariantCultureIgnoreCase))
+            {
+                return Apostrophe;
+            }
+            return DoubleSlash;
         }
     }
 }

@@ -8,8 +8,11 @@ namespace AlignCommentsExtension.Classes
     {
         public const int DefaultTabSize = 4;
         public const string DoubleSlash = "//";
+        public const string Apostrophe = "'";
 
         public const string WindowsLineEnding = "\r\n";
         public const string UnixLineEnding = "\n";
+
+        public const string VisualBasicExtension = ".vb";
     }
 }
