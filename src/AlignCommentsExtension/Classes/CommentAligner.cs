@@ -9,14 +9,16 @@ namespace AlignCommentsExtension.Classes
     {
         public int TabSize { get; }
         public string LineEnding { get; }
+        public string Delimiter { get; }
 
         private readonly List<string> lines;
         private readonly List<string> linesWithoutTabs;
 
-        public CommentAligner(IEnumerable<string> lines, int tabSize, string lineEnding)
+        public CommentAligner(IEnumerable<string> lines, int tabSize, string lineEnding, string delimiter = DoubleSlash)
         {
             TabSize = tabSize;
             LineEnding = lineEnding;
+            Delimiter = delimiter;
 
             this.lines = lines.ToList();
             this.linesWithoutTabs = lines.Select(x => x.Replace("\t", new string(' ', TabSize))).ToList();
@@ -31,7 +33,7 @@ namespace AlignCommentsExtension.Classes
         private IEnumerable<string> GetLines()
         {
             // Get inline comment index without tabs
-            int commentIndex = linesWithoutTabs.Select(x => x.LastIndexOf(DoubleSlash)).Max();
+            int commentIndex = linesWithoutTabs.Select(x => x.LastIndexOf(Delimiter)).Max();
 
             List<string> newLines = new List<string>();
             for (int i = 0; i < lines.Count(); i++)
@@ -39,8 +41,8 @@ namespace AlignCommentsExtension.Classes
                 string line = lines[i];
 
                 //ToDo(Lixfeld): Improve comment detection
-                int index = line.LastIndexOf(DoubleSlash);
-                int indexWithoutTabs = linesWithoutTabs[i].LastIndexOf(DoubleSlash);
+                int index = line.LastIndexOf(Delimiter);
+                int indexWithoutTabs = linesWithoutTabs[i].LastIndexOf(Delimiter);
 
                 if (index <= -1)
                 {
