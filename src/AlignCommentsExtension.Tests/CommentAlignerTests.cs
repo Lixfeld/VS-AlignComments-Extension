@@ -25,5 +25,11 @@ namespace AlignCommentsExtension.Tests
         {
             FileComparer.Verify(lineEnding: UnixLineEnding);
         }
+
+        [Fact]
+        public void SimpleAlignmentVisualBasic()
+        {
+            FileComparer.Verify(delimiter: Apostrophe);
+        }
     }
 }

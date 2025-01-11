@@ -24,6 +24,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Update="TestFiles\SimpleAlignmentVisualBasic.expected">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="TestFiles\SimpleAlignmentVisualBasic.test">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 		<None Update="TestFiles\SimpleAlignmentTabs.test">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>

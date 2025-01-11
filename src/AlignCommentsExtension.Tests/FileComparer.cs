@@ -13,7 +13,7 @@ namespace AlignCommentsExtension.Tests
     {
         private const string TestFilesDirectory = @"TestFiles\";
 
-        public static void Verify(int tabSize = DefaultTabSize, string lineEnding = WindowsLineEnding, [CallerMemberName] string fileName = "")
+        public static void Verify(int tabSize = DefaultTabSize, string lineEnding = WindowsLineEnding, string delimiter = DoubleSlash, [CallerMemberName] string fileName = "")
         {
             // Arrange
             string testFileName = TestFilesDirectory + fileName + ".test";
@@ -23,7 +23,7 @@ namespace AlignCommentsExtension.Tests
             string expectedText = File.ReadAllText(expectedFileName);
 
             // Act
-            CommentAligner commentAligner = new CommentAligner(lines, tabSize, lineEnding);
+            CommentAligner commentAligner = new CommentAligner(lines, tabSize, lineEnding, delimiter);
             string actualText = commentAligner.GetText();
 
             // Assert
