@@ -1,0 +1,9 @@
+﻿namespace AlignCommentsExtension.Tests
+{
+/// <summary>
+  /// Documentation
+    /// </summary>
+    public static class Program
+    {
+    }
+}

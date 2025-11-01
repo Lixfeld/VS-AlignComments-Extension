@@ -1,0 +1,7 @@
+﻿public static void Main(string[] args)
+{
+    var service = new CustomerService(); // Create new service
+    var customers = service.GetCustomers(); /// Read all customers
+    var activeCustomers = customers.Where(x => x.IsActive); /// Only active customers
+    var customerList = customers.ToList(); //// Use List
+}

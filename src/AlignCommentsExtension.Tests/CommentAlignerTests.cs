@@ -31,5 +31,17 @@ namespace AlignCommentsExtension.Tests
         {
             FileComparer.Verify(delimiter: Apostrophe);
         }
+
+        [Fact]
+        public void DocumentationAlignment()
+        {
+            FileComparer.Verify();
+        }
+
+        [Fact]
+        public void MixedDelimiterLength()
+        {
+            FileComparer.Verify();
+        }
     }
 }
