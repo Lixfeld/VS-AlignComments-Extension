@@ -33,17 +33,14 @@ namespace AlignCommentsExtension.Classes
         private IEnumerable<string> GetLines()
         {
             // Get inline comment index without tabs
-            int commentIndex = linesWithoutTabs.Select(x => x.LastIndexOf(Delimiter)).Max();
+            int commentIndex = linesWithoutTabs.Select(x => GetLastIndexOfDelimiter(x)).Max();
 
             List<string> newLines = new List<string>();
-            for (int i = 0; i < lines.Count(); i++)
+            for (int i = 0; i < lines.Count; i++)
             {
                 string line = lines[i];
 
-                //ToDo(Lixfeld): Improve comment detection
-                int index = line.LastIndexOf(Delimiter);
-                int indexWithoutTabs = linesWithoutTabs[i].LastIndexOf(Delimiter);
-
+                int index = GetLastIndexOfDelimiter(line);
                 if (index <= -1)
                 {
                     // Add unchanged line
@@ -63,6 +60,20 @@ namespace AlignCommentsExtension.Classes
                 }
             }
             return newLines;
+        }
+
+        private int GetLastIndexOfDelimiter(string line)
+        {
+            int index = line.LastIndexOf(Delimiter);
+
+            // Expand to largest delimiter. Don't split!
+            // Example: The delimiter "//" can expand to "///"
+            char firstDelimiterChar = Delimiter[0];
+            while (index >= 1 && line[index - 1] == firstDelimiterChar)
+            {
+                index--;
+            }
+            return index;
         }
     }
 }
